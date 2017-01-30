@@ -13,8 +13,20 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-	for (int x = 0; x < 1024; ++x)
-		putpixel(x, 768 / 2, ofColor::green);
+	int xc = ofGetWidth() / 2;
+	int yc = ofGetHeight() / 2;
+
+	int x0 = 0, y0 = 0;
+	for (float a = 0; a < 360; ++a)
+	{
+		int x1 = 100 * cos(a*PI / 180.0f);
+		int y1 = 100 * sin(a*PI / 180.0f);
+		
+		Line((x0 + xc), (y0 + yc), (x1 + xc), (y1 + yc), ofColor::green);
+	}
+		
+
+
 }
 
 //--------------------------------------------------------------
@@ -93,4 +105,38 @@ void ofApp::clear(const ofColor& color)
 
 	_img.update();
 	_img.draw(ofPoint(0, 0, 0));
+}
+
+void ofApp::Line(const int x0, const int y0, const int x1, const int y1, const ofColor& color)
+{
+	int dy = y1 - y0;
+	int dx = x1 - x0;
+
+	int d = 2 * dy - dx;
+	int E = 2 * dy - 2 * dx;
+	int NE = 2 * dy;
+
+	int x = x0, y = y0;
+
+	putpixel(x0, y0,color);
+
+	
+
+	while (x <= x1)
+	{
+		x = x + 1;
+
+		if (d <= 0)
+		{
+			d = d + E;
+		}
+		else if (d > 0)
+		{
+			d = d + NE;
+			y = y + 1;
+		}
+
+		putpixel(x, y, color);
+	}
+
 }
