@@ -10,7 +10,8 @@ class ofApp : public ofBaseApp{
 		void draw();
 		void putpixel(const int& x, const int& y, const ofColor& color);
 		void clear(const ofColor& color);
-		void ofApp::Line(const int x0, const int y0, const int x1, const int y1, const ofColor& color);
+		void Line(const int x0, const int y0, const int x1, const int y1, const ofColor& color);
+		void Circle( int x,  int y, const int r, const ofColor& color);
 
 
 		void keyPressed(int key);
